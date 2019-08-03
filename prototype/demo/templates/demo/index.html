@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+          integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+          integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+            integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+            crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+            integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+            crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
+            integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+            crossorigin="anonymous"></script>
+
+    <title>Booksmart</title>
+</head>
+<body>
+
+
+<div class="container p-3 mb-2 bg-primary text-white">
+    <div class="container p-3 mb-2 bg-success text-white">
+        {% if latest_listing_list %}
+        <table class="table">
+            <thead>
+            <tr>
+                <th scope="col">isbn</th>
+                <th scope="col">Book Name</th>
+                <th scope="col">Class Name</th>
+                <th scope="col">Seller Name</th>
+                <th scope="col">Price</th>
+            </tr>
+            </thead>
+            <tbody>
+
+            {% for listing in latest_listing_list %}
+            <tr>
+                <td>{{ listing.isbn }}</a></td>
+                <td>{{ listing.book_name }}</td>
+                <td>{{ listing.class_name }}</td>
+                <td>{{ listing.seller_name }}</td>
+                <td>{{ listing.price }}</td>
+            </tr>
+            {% endfor %}
+            {% else %}
+            <p>No Listing is available.</p>
+            {% endif %}
+
+
+            </tbody>
+        </table>
+    </div>
+</div>
+</body>
+</html>
