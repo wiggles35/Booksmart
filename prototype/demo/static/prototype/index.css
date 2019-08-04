@@ -1,0 +1,18 @@
+td {
+    font-size: 20px;
+	text-align: center;
+	color: black;
+}
+th {
+    font-size: 30px;
+    text-align: center;
+    font-weight: bold;
+    color: black;
+}
+body {
+    background: #f0f0f0;
+
+}
+nav {
+    background: #E37222;
+}
