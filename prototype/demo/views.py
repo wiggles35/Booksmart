@@ -12,7 +12,16 @@ def detail(request, demo_id):
     return HttpResponse("You're looking at item %s." % demo_id)
 
 
-def index(request):
-    latest_listing_list = Listing.objects.order_by('seller_name')[:5]
+def home(request):
+    latest_listing_list = Listing.objects.order_by('seller_name')
     context = {'latest_listing_list': latest_listing_list}
-    return render(request, 'demo/index.html', context)
+    return render(request, 'demo/home.html', context)
+
+
+def add_book(request):
+    return render(request, 'demo/add_book.html')
+
+
+def about_us(request):
+    return render(request, 'demo/about_us.html')
+
