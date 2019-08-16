@@ -1,13 +1,42 @@
 from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse, HttpResponseRedirect
-from .models import Listing
-from .forms import AddBookForm
+from .models import Listing, SoldBook
+from .forms import AddBookForm, RemoveBookForm
 
 
 def home(request):
     latest_listing_list = Listing.objects.order_by('seller_name')
     context = {'latest_listing_list': latest_listing_list}
     return render(request, 'demo/home.html', context)
+
+
+def start_delete_entry(request, pk):
+    end_listing = Listing.objects.get(pk=pk)
+    form = RemoveBookForm()
+    context = {'end_listing': end_listing, 'form': form}
+    return render(request, 'demo/delete_entry.html', context)
+
+
+def finish_delete_entry(request, pk):
+    if request.method == 'POST':
+        # create a form instance and populate it with data from the request:
+        form = RemoveBookForm(request.POST)
+        # check whether it's valid:
+        if form.is_valid():
+            # process the data in form.cleaned_data as required
+            # ...
+            # redirect to a new URL:
+            end_listing = Listing.objects.get(pk=pk)
+            new_sale = SoldBook(isbn=end_listing.isbn, class_name=end_listing.class_name,
+                                book_name=end_listing.book_name, seller_name=end_listing.seller_name,
+                                price=end_listing.price, email=end_listing.email,
+                                sold_price=form.cleaned_data['sale_price'],
+                                customer_feedback=form.cleaned_data['comments'])
+            new_sale.save()
+            end_listing.delete()
+            return HttpResponseRedirect('/demo')
+
+    return HttpResponseRedirect('/demo')
 
 
 def about_us(request):
@@ -26,7 +55,8 @@ def add_book(request):
             # redirect to a new URL:
             new_book = Listing(isbn=form.cleaned_data['new_isbn'], class_name=form.cleaned_data['new_class_name'],
                                book_name=form.cleaned_data['new_book_name'],
-                               seller_name=form.cleaned_data['new_seller_name'], price=form.cleaned_data['new_price'])
+                               seller_name=form.cleaned_data['new_seller_name'], price=form.cleaned_data['new_price'],
+                               email=form.cleaned_data['new_email'])
             new_book.save()
             return HttpResponseRedirect('/demo')
 
