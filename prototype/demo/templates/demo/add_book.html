@@ -21,9 +21,8 @@
             integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
             crossorigin="anonymous"></script>
     <!-- Custom CSS -->
-       {% load static %}
+    {% load static %}
     <link rel="stylesheet" type="text/css" href="{% static 'prototype/index.css' %}">
-
     <title>Add New Book</title>
 </head>
 <body>
@@ -39,7 +38,7 @@
                 <a class="nav-link" href="#">Add Your Book<span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">About</a>
+                <a class="nav-link" href="/demo/about_us/">About Us</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="#">Come Work With Us</a>
@@ -53,40 +52,55 @@
 <div class="container">
     <h1>Add Your Book Here!</h1>
     <h2>This Site is currently only available to Notre Dame and Saint Mary's Students</h2>
+    <h3>No Account Needed!</h3>
     <br>
     <br>
-    <form>
+    <!--
+    <form action="/demo/add_book/new_entry" method="post">
+        {% csrf_token %}
         <div class="form-group">
             <label for="exampleInputEmail1">Email address</label>
-            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
+            <input type="email" class="form-control col-md-10 col-lg-7 col-xl-5" id="exampleInputEmail1"
+                   aria-describedby="emailHelp"
                    placeholder="Enter email">
             <small id="emailHelp" class="form-text text-muted">please only use your ND/SMC Email</small>
         </div>
         <div class="form-group">
             <label for="sellerName">Your Name</label>
-            <input type="text" class="form-control" id="sellerName" placeholder="Your Name">
+            <input type="text" class="form-control col-md-10 col-lg-7 col-xl-5" id="sellerName" name=sellerName"
+                   placeholder="Your Name">
         </div>
         <div class="form-group">
             <label for="price">ISBN</label>
-            <input type="text" class="form-control" id="price" placeholder="ISBN Number">
+            <input type="text" class="form-control col-md-10 col-lg-7 col-xl-5" id="price" name="price"
+                   placeholder="ISBN Number">
         </div>
         <div class="form-group">
             <label for="className">Class Name</label>
-            <input type="text" class="form-control" id="className" placeholder="Class Name">
+            <input type="text" class="form-control col-md-10 col-lg-7 col-xl-5" id="className" name="className"
+                   placeholder="Class Name">
         </div>
         <div class="form-group">
             <label for="bookTitle">Book Title</label>
-            <input type="text" class="form-control" id="bookTitle" placeholder="Book Title">
+            <input type="text" class="form-control col-md-10 col-lg-7 col-xl-5" id="bookTitle" name="bookTitle"
+                   placeholder="Book Title">
         </div>
         <div class="form-group">
             <label for="phoneNumber">Phone Number</label>
-            <input type="text" class="form-control" id="phoneNumber" placeholder="Phone Number">
+            <input type="text" class="form-control col-md-10 col-lg-7 col-xl-5" id="phoneNumber" name="phoneNumber"
+                   placeholder="Phone Number">
         </div>
         <div class="form-check">
             <input type="checkbox" class="form-check-input" id="exampleCheck1">
             <label class="form-check-label" for="exampleCheck1">I promise to update my listing if it sells</label>
         </div>
         <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+    -->
+    <form action="" method="post">
+        {% csrf_token %}
+        {{form.as_p}}
+        <input type="submit" value="Submit">
     </form>
 </div>
 </body>
