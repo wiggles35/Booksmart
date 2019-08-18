@@ -28,12 +28,17 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
-SECURE_CONTENT_TYPE_NOSNIFF = True
-SECURE_BROWSER_XSS_FILTER = True
-SECURE_SSL_REDIRECT = True
-SESSION_COOKIE_SECURE = True
-X_FRAME_OPTIONS = 'DENY'
-CSRF_COOKIE_SECURE = True
+SECURE_CONTENT_TYPE_NOSNIFF = False
+SECURE_BROWSER_XSS_FILTER = False
+
+SECURE_SSL_REDIRECT = False
+
+SESSION_COOKIE_SECURE = False
+
+X_FRAME_OPTIONS = 'ALLOW'
+CSRF_COOKIE_SECURE = False
+
+
 # Application definition
 
 INSTALLED_APPS = [
@@ -44,7 +49,6 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'Booksmart',
 ]
 
 MIDDLEWARE = [
@@ -130,6 +134,3 @@ PROJECT_DIR = os.path.dirname(os.path.abspath(__file__))
 STATIC_ROOT = os.path.join(PROJECT_DIR, 'static')
 
 STATIC_URL = '/static/'
-
-PROJECT_DIR = os.path.dirname(os.path.abspath(__file__))
-STATIC_ROOT = os.path.join(PROJECT_DIR, 'static')
