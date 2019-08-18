@@ -1,1 +1,3 @@
-web: gunicorn Booksmart.wsgi --log-file -
+web: gunicorn prototype.wsgi --log-file -
+
+
