@@ -2,7 +2,7 @@ from .base import *
 INSTALLED_APPS += ("gunicorn",)
 SECRET_KEY = os.environ['SECRET_KEY']
 
-
+'''
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
@@ -13,3 +13,4 @@ DATABASES = {
         'PORT': '5432',
     }
 }
+'''
