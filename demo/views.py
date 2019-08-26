@@ -2,6 +2,7 @@ from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse, HttpResponseRedirect
 from .models import Listing, SoldBook
 from .forms import AddBookForm, RemoveBookForm
+import datetime
 
 
 def home(request):
@@ -56,7 +57,7 @@ def add_book(request):
             new_book = Listing(isbn=form.cleaned_data['new_isbn'], class_name=form.cleaned_data['new_class_name'],
                                book_name=form.cleaned_data['new_book_name'],
                                seller_name=form.cleaned_data['new_seller_name'], price=form.cleaned_data['new_price'],
-                               email=form.cleaned_data['new_email'])
+                               email=form.cleaned_data['new_email'], upload_date=datetime.datetime.now())
             new_book.save()
             return HttpResponseRedirect('/demo')
 
