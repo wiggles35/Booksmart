@@ -44,6 +44,10 @@ def about_us(request):
     return render(request, 'demo/about_us.html')
 
 
+def join_us(request):
+    return render(request, 'demo/join_us.html')
+
+
 def add_book(request):
     # if this is a POST request we need to process the form data
     if request.method == 'POST':
