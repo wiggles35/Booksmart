@@ -6,7 +6,7 @@ import datetime
 
 
 def home(request):
-    latest_listing_list = Listing.objects.order_by('upload_date')
+    latest_listing_list = Listing.objects.order_by('-upload_date')
     context = {'latest_listing_list': latest_listing_list}
     return render(request, 'demo/home.html', context)
 
