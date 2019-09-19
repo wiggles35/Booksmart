@@ -1,4 +1,5 @@
 from django.db import models
+import datetime
 
 
 # Create your models here.
@@ -9,6 +10,7 @@ class Listing(models.Model):
     seller_name = models.CharField(max_length=200, blank=True, null=True)
     price = models.IntegerField(blank=True, null=True)
     email = models.EmailField(blank=True, null=True)
+    upload_date = models.DateTimeField(default=datetime.datetime.now(), blank=True, null=True)
 
     def __str__(self):
         return self.isbn
