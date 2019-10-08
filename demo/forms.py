@@ -1,4 +1,6 @@
 from django import forms
+from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.models import User
 
 
 class AddBookForm(forms.Form):
@@ -16,4 +18,16 @@ class RemoveBookForm(forms.Form):
     end_promise_box = forms.BooleanField(
         label="I promise that I am removing ONLY an entry that I put up. This website operates on the honor system\n")
     comments = forms.CharField(widget=forms.Textarea,
-                               label="What has your experience been with this service? I'd love to hear any and all feedback from how the website worked for you, to the physical buying/selling experience!")
+                               label="What has your experience been with this service? I'd love to hear any and all "
+                                     "feedback from how the website worked for you, to the physical buying/selling "
+                                     "experience!")
+
+
+class SignUpForm(UserCreationForm):
+    first_name = forms.CharField(max_length=30, required=False, help_text='Optional.')
+    last_name = forms.CharField(max_length=30, required=False, help_text='Optional.')
+    email = forms.EmailField(max_length=254, help_text='Required. Inform a valid email address.')
+
+    class Meta:
+        model = User
+        fields = ('username', 'first_name', 'last_name', 'email', 'password1', 'password2', )
