@@ -1,8 +1,9 @@
 from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse, HttpResponseRedirect
 from django.contrib.auth import login, authenticate
-from .models import Listing, SoldBook
+from .models import Listing, SoldBook, CustomUser
 from .forms import AddBookForm, RemoveBookForm, SignUpForm
+from django.contrib.auth.decorators import login_required
 import datetime
 
 
@@ -12,6 +13,7 @@ def home(request):
     return render(request, 'demo/home.html', context)
 
 
+@login_required
 def start_delete_entry(request, pk):
     end_listing = Listing.objects.get(pk=pk)
     form = RemoveBookForm()
@@ -19,6 +21,7 @@ def start_delete_entry(request, pk):
     return render(request, 'demo/delete_entry.html', context)
 
 
+@login_required
 def finish_delete_entry(request, pk):
     if request.method == 'POST':
         # create a form instance and populate it with data from the request:
@@ -63,7 +66,7 @@ def about_us(request):
 def join_us(request):
     return render(request, 'demo/join_us.html')
 
-
+@login_required
 def add_book(request):
     # if this is a POST request we need to process the form data
     if request.method == 'POST':
@@ -74,10 +77,11 @@ def add_book(request):
             # process the data in form.cleaned_data as required
             # ...
             # redirect to a new URL:
+
             new_book = Listing(isbn=form.cleaned_data['new_isbn'], class_name=form.cleaned_data['new_class_name'],
                                book_name=form.cleaned_data['new_book_name'],
                                seller_name=form.cleaned_data['new_seller_name'], price=form.cleaned_data['new_price'],
-                               email=form.cleaned_data['new_email'], upload_date=datetime.datetime.now())
+                               email=form.cleaned_data['new_email'], upload_date=datetime.datetime.now(), user=request.user)
             new_book.save()
             return HttpResponseRedirect('/demo')
 
@@ -86,3 +90,12 @@ def add_book(request):
         form = AddBookForm()
 
     return render(request, 'demo/add_book.html', {'form': form})
+
+
+@login_required
+def my_listings(request):
+    #latest_listing_list = Listing.objects.order_by('-upload_date')
+    listings_by_user = Listing.objects.filter(user=request.user).values()
+    context = {'listings_by_user': listings_by_user}
+    print(request.user.pk)
+    return render(request, 'demo/my_listings.html', context)

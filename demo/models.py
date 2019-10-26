@@ -1,9 +1,15 @@
+from django.contrib.auth.models import AbstractUser
 from django.db import models
 import datetime
 
 
+class CustomUser(AbstractUser):
+    pass
+
+
 # Create your models here.
 class Listing(models.Model):
+    user = models.ForeignKey(CustomUser, on_delete=models.CASCADE, default="None")
     isbn = models.IntegerField(blank=True, null=True)
     class_name = models.CharField(max_length=200, blank=True, null=True)
     book_name = models.CharField(max_length=200, blank=True, null=True)
