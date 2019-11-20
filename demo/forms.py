@@ -4,8 +4,8 @@ from .models import CustomUser
 
 
 class AddBookForm(forms.Form):
-    new_email = forms.EmailField(label='Please use your ND/SMC email')
-    new_seller_name = forms.CharField(label='Your Name')
+    #new_email = forms.EmailField(label='Please use your ND/SMC email')
+    #new_seller_name = forms.CharField(label='Your Name')
     new_price = forms.IntegerField(label='Asking Price')
     new_isbn = forms.IntegerField(label='ISBN Number')
     new_class_name = forms.CharField(label='Class Name')

@@ -10,6 +10,6 @@ urlpatterns = [
     path('delete_entry/(<pk>[0-9]+)/', views.start_delete_entry, name='start_delete_entry'),
     path('delete_entry/(<pk>[0-9]+)/delete/', views.finish_delete_entry, name='finish_delete_entry'),
     path('signup/', views.signup, name='signup'),
-    path('my_listings', views.my_listings, name='my_listings'),
+    path('my_listings/', views.my_listings, name='my_listings'),
 ]
 

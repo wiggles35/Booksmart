@@ -66,6 +66,7 @@ def about_us(request):
 def join_us(request):
     return render(request, 'demo/join_us.html')
 
+
 @login_required
 def add_book(request):
     # if this is a POST request we need to process the form data
@@ -80,8 +81,8 @@ def add_book(request):
 
             new_book = Listing(isbn=form.cleaned_data['new_isbn'], class_name=form.cleaned_data['new_class_name'],
                                book_name=form.cleaned_data['new_book_name'],
-                               seller_name=form.cleaned_data['new_seller_name'], price=form.cleaned_data['new_price'],
-                               email=form.cleaned_data['new_email'], upload_date=datetime.datetime.now(), user=request.user)
+                               user=request.user, price=form.cleaned_data['new_price'],
+                               email=request.user.email, upload_date=datetime.datetime.now(), )
             new_book.save()
             return HttpResponseRedirect('/demo')
 
@@ -94,7 +95,7 @@ def add_book(request):
 
 @login_required
 def my_listings(request):
-    #latest_listing_list = Listing.objects.order_by('-upload_date')
+
     listings_by_user = Listing.objects.filter(user=request.user).values()
     context = {'listings_by_user': listings_by_user}
     print(request.user.pk)
