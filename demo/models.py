@@ -4,7 +4,9 @@ import datetime
 
 
 class CustomUser(AbstractUser):
-    pass
+    # Can add additional fields here
+    def __str__(self):
+        return self.email
 
 
 # Create your models here.
