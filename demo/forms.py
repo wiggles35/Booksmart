@@ -16,7 +16,7 @@ class AddBookForm(forms.Form):
 class RemoveBookForm(forms.Form):
     sale_price = forms.IntegerField(label='How much did your book sell for? Put 0 if did not sell')
     end_promise_box = forms.BooleanField(
-        label="I promise that I am removing ONLY an entry that I put up. This website operates on the honor system\n")
+        label="Confirm you want to take down posting\n")
     comments = forms.CharField(widget=forms.Textarea,
                                label="What has your experience been with this service? I'd love to hear any and all "
                                      "feedback from how the website worked for you, to the physical buying/selling "

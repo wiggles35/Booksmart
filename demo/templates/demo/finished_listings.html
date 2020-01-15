@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+{% extends 'demo/base.html' %}
+{% block content %}
+    {% if finished_listings %}
+    <div class="table-responsive">
+        <table class="table table-striped table-hover">
+            <thead>
+            <tr>
+
+                <th scope="col">Book Name</th>
+                <th scope="col">Class Name</th>
+                <th scope="col">ISBN</th>
+                <th scope="col">Price</th>
+                <th scope="col">Email</th>
+                <th scope="col">Sold Price</th>
+                <th scope="col">Customer Feedback</th>
+            </tr>
+            </thead>
+            <tbody>
+
+            {% for listing in finished_listings %}
+            <tr>
+                <td>{{ listing.book_name }}</td>
+                <td>{{ listing.class_name }}</td>
+                <td>{{ listing.isbn }}</td>
+                <td>${{ listing.price }}</td>
+                <td>{{ listing.email }}</td>
+                <td>${{ listing.sold_price }}</td>
+                <td>{{ listing.customer_feedback }}</td>
+            </tr>
+            {% endfor %}
+            {% else %}
+            <p>No Listing is available.</p>
+            {% endif %}
+{% endblock %}
+</body>
+</html>

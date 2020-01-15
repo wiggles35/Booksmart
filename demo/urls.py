@@ -11,5 +11,6 @@ urlpatterns = [
     path('delete_entry/(<pk>[0-9]+)/delete/', views.finish_delete_entry, name='finish_delete_entry'),
     # path('signup/', views.signup, name='signup'),
     path('my_listings/', views.my_listings, name='my_listings'),
+    path('sold_listings/', views.sold_listings, name = 'sold_listings')
 ]
 

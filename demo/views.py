@@ -43,21 +43,6 @@ def finish_delete_entry(request, pk):
 
     return HttpResponseRedirect('/demo')
 
-    """
-    def signup(request):
-        if request.method == 'POST':
-            form = SignUpForm(request.POST)
-            if form.is_valid():
-                form.save()
-                email = form.cleaned_data.get('email')
-                raw_password = form.cleaned_data.get('password1')
-                user = authenticate(email=email, password=raw_password)
-                login(request, user)
-                return HttpResponseRedirect('/demo/')
-        else:
-            form = SignUpForm()
-        return render(request, 'demo/templates/account/signup.html', {'form': form})
-    """
 
 def about_us(request):
     return render(request, 'demo/about_us.html')
@@ -95,8 +80,16 @@ def add_book(request):
 
 @login_required
 def my_listings(request):
-
     listings_by_user = Listing.objects.filter(user=request.user).values()
     context = {'listings_by_user': listings_by_user}
-    print(request.user.pk)
     return render(request, 'demo/my_listings.html', context)
+
+
+# This displays the finished postings
+@login_required
+def sold_listings(request):
+    finished_listings = SoldBook.objects.order_by('-email')
+    context = {'finished_listings': finished_listings}
+    return render(request, 'demo/finished_listings.html', context)
+
+
